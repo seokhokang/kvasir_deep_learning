@@ -13,4 +13,4 @@ Medical image classification/segmentation with Kvasir/Kvasir-SEG dataset
 - **Python**
 - **TensorFlow**
 - **Keras**
-- Preprocssing code adopted from https://github.com/JasperDeMeijer/Course10ImageRecognition
+- Preprocessing code adopted from https://github.com/JasperDeMeijer/Course10ImageRecognition
