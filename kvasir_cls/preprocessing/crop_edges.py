@@ -39,31 +39,40 @@ class Crop:
         gray = cv2.cvtColor(binary, cv2.COLOR_BGR2GRAY)
 
         # retrieving x-axis coordinates
-
-        # compute x-axis at 60% of the y-axis
-        # above this area, text may be present on the black edge
-        mid = int(gray.shape[0] * 0.60)
-        # get a list of pixels on the x-axis at 60% of y-axis
-        x_axis = list(gray[mid, ::])
-        x_axis_len = len(x_axis)
-        # get minimal index of x_axis of black pixel
-        min_x = x_axis.index(0)
-        # get maxiumum value of x_axis of black pixel
-        x_axis_rev = x_axis[::-1]
-        max_x = x_axis_len - x_axis_rev.index(0)
+        min_x = []
+        max_x = []
+        for frac in [0.4, 0.45, 0.5, 0.55, 0.6]:        
+            # compute x-axis at 100*frac% of the y-axis
+            # above this area, text may be present on the black edge
+            mid = int(gray.shape[0] * frac)
+            # get a list of pixels on the x-axis at 100*frac% of y-axis
+            x_axis = list(gray[mid, ::])
+            x_axis_len = len(x_axis)
+            # get minimal index of x_axis of black pixel
+            min_x.append(x_axis.index(0))
+            # get maxiumum value of x_axis of black pixel
+            x_axis_rev = x_axis[::-1]
+            max_x.append(x_axis_len - x_axis_rev.index(0))
+        
+        min_x = min(min_x)
+        max_x = max(max_x)
 
         # retrieving y-axis coordinates
-
-        # compute x-axis at the center of the image
-        mid = int((gray.shape[1] + min_x) * 0.5)
-        # get an y-axis as list in the middle (50%) of the x-axis
-        y_axis = list(gray[::, mid])
-        y_axis_len = len(y_axis)
-        # get minimal y index
-        min_y = y_axis.index(0)
-        # get maximal y index
-        y_axis_rev = y_axis[::-1]
-        max_y = y_axis_len - y_axis_rev.index(0)
+        min_y = []
+        max_y = []
+        for frac in [0.4, 0.45, 0.5, 0.55, 0.6]:
+            # compute x-axis at 100*frac% of the image
+            mid = int((gray.shape[1] + min_x) * frac)
+            # get an y-axis as list at 100*frac% of the x-axis
+            y_axis = list(gray[::, mid])
+            y_axis_len = len(y_axis)
+            # get minimal y index
+            min_y.append(y_axis.index(0))
+            # get maximal y index
+            y_axis_rev = y_axis[::-1]
+            max_y.append(y_axis_len - y_axis_rev.index(0))
+        
+        min_y = min(min_y)
+        max_y = max(max_y)
 
         return min_x, max_x, min_y, max_y
-
