@@ -54,8 +54,8 @@ class Crop:
             x_axis_rev = x_axis[::-1]
             max_x.append(x_axis_len - x_axis_rev.index(0))
         
-        min_x = max(min_x)
-        max_x = min(max_x)
+        min_x = max(min_x)##trick
+        max_x = max(max_x)
 
         # retrieving y-axis coordinates
         min_y = []
@@ -72,7 +72,7 @@ class Crop:
             y_axis_rev = y_axis[::-1]
             max_y.append(y_axis_len - y_axis_rev.index(0))
         
-        min_y = max(min_y)
-        max_y = min(max_y)
+        min_y = min(min_y)
+        max_y = max(max_y)
 
         return min_x, max_x, min_y, max_y
