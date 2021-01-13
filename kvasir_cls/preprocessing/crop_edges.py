@@ -41,7 +41,7 @@ class Crop:
         # retrieving x-axis coordinates
         min_x = []
         max_x = []
-        for frac in [0.4, 0.45, 0.5, 0.55, 0.6]:        
+        for frac in [0.5, 0.55, 0.6, 0.65, 0.7]:        
             # compute x-axis at 100*frac% of the y-axis
             # above this area, text may be present on the black edge
             mid = int(gray.shape[0] * frac)
@@ -54,8 +54,8 @@ class Crop:
             x_axis_rev = x_axis[::-1]
             max_x.append(x_axis_len - x_axis_rev.index(0))
         
-        min_x = min(min_x)
-        max_x = max(max_x)
+        min_x = max(min_x)
+        max_x = min(max_x)
 
         # retrieving y-axis coordinates
         min_y = []
@@ -72,7 +72,7 @@ class Crop:
             y_axis_rev = y_axis[::-1]
             max_y.append(y_axis_len - y_axis_rev.index(0))
         
-        min_y = min(min_y)
-        max_y = max(max_y)
+        min_y = max(min_y)
+        max_y = min(max_y)
 
         return min_x, max_x, min_y, max_y
