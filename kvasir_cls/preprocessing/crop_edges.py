@@ -18,7 +18,7 @@ class Crop:
         # consecutively to the L*a*b* color spaces for better thresholding
         blurred = cv2.GaussianBlur(image, (5, 5), 0)
         lab = cv2.cvtColor(blurred, cv2.COLOR_BGR2LAB)
-        (t, binary) = cv2.threshold(lab, 30, 255, cv2.THRESH_BINARY_INV)
+        (t, binary) = cv2.threshold(lab, 20, 255, cv2.THRESH_BINARY_INV)
         # get coordinates of black edge
         min_x, max_x, min_y, max_y = self.detect_edge(binary)
         # crop the image with coordinates
