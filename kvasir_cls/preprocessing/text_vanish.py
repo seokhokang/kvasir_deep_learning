@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import tesserocr as tr
 from PIL import Image
 
 
@@ -102,6 +101,3 @@ class Vanisher:
                 bnw[e] = [0 for _ in range(x_axis)]
         # return mask a numpy array
         return np.array(bnw)
-
-#
-#
