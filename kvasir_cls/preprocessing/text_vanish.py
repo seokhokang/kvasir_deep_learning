@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import tesserocr as tr
 from PIL import Image
 
 
